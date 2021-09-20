@@ -1,3 +1,4 @@
+import 'package:cargo/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 120.0,
-        child: Image.asset('assets/images/ewawelogo.png'),
+        child: Image.asset('assets/images/cargologo.jpeg'),
       ),
     );
 
@@ -58,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: new Text(
               "Forgot password ?",
               style: GoogleFonts.poppins(
-                  color: Colors.lightGreen, fontWeight: FontWeight.normal),
+                  color: cargoBlue, fontWeight: FontWeight.normal),
             ),
           ),
         ],
@@ -79,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
           //     (Route<dynamic> route) => false);
         },
         padding: EdgeInsets.all(12),
-        color: Colors.grey,
+        color: cargoBlue,
         child: Text('LOG IN',
             style: GoogleFonts.poppins(
                 fontSize: 20,
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // );
             },
             child: new Text("Sign up",
-                style: GoogleFonts.poppins(color: Colors.lightGreenAccent)),
+                style: GoogleFonts.poppins(color: cargoBlue)),
           ),
         ],
       ),

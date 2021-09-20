@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: AnimatedSplashScreen(
         duration: 3000,
-        splashIconSize: 300,
+        splashIconSize: 200,
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.white,
         splash: Image.asset('assets/images/cargologo.jpeg'),
