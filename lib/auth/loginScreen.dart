@@ -1,3 +1,4 @@
+import 'package:cargo/dashboard/dash.dart';
 import 'package:cargo/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,20 +69,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 19.0),
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-        ),
+      child: ElevatedButton(
         onPressed: () {
-          // // Navigator.of(context).pushNamed(HomePage.tag);
-          // Navigator.of(context).pushAndRemoveUntil(
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => DashboardScreen()),
-          //     (Route<dynamic> route) => false);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (BuildContext context) => DashboardScreen(),
+              ),
+              (Route<dynamic> route) => false);
         },
-        padding: EdgeInsets.all(12),
-        color: cargoBlue,
-        child: Text('LOG IN',
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18.0),
+          ),
+          primary: cargoDarkBlue,
+          fixedSize: Size(200, 60),
+        ),
+        child: Text('LOGIN',
             style: GoogleFonts.poppins(
                 fontSize: 20,
                 color: Colors.white,
