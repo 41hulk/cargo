@@ -2,11 +2,10 @@ import 'package:cargo/dashboard/cargotrack.dart';
 import 'package:cargo/dashboard/order.dart';
 import 'package:cargo/profile/profileScreen.dart';
 import 'package:cargo/utils/colors.dart';
-import 'package:flashy_tab_bar/flashy_tab_bar.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -33,7 +32,6 @@ class _DashScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     _myPage = PageController(initialPage: 0);
-
     super.initState();
   }
 
@@ -63,48 +61,31 @@ class _DashScreenState extends State<DashboardScreen> {
           // ],
         ),
         body: PageView(
+          physics: NeverScrollableScrollPhysics(),
           controller: _myPage,
           children: [...pages],
         ),
-        bottomNavigationBar: FlashyTabBar(
+        bottomNavigationBar: SlidingClippedNavBar(
           selectedIndex: _selectedPage,
-          showElevation: true,
-          // onItemSelected: (index) => setState(() {
-          //   _selectedIndex = index;
-          // }),
-          onItemSelected: (index) => _onItemTapped(index),
-          items: [
-            FlashyTabBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-                size: 25,
-                color: cargoGreen,
-              ),
-              title: Text('Home'),
+          activeColor: Color(0xFF01579B),
+          iconSize: 26,
+          onButtonPressed: (index) => _onItemTapped(index),
+          barItems: [
+            BarItem(
+              icon: Icons.home_outlined,
+              title: 'Home',
             ),
-            FlashyTabBarItem(
-              icon: Icon(
-                Icons.art_track,
-                size: 25,
-                color: cargoGreen,
-              ),
-              title: Text('Cargo Track'),
+            BarItem(
+              icon: Icons.art_track,
+              title: 'Track',
             ),
-            FlashyTabBarItem(
-              icon: Icon(
-                Icons.add_road,
-                size: 25,
-                color: cargoGreen,
-              ),
-              title: Text('Cargo Update'),
+            BarItem(
+              icon: Icons.add_road,
+              title: 'Update',
             ),
-            FlashyTabBarItem(
-              icon: Icon(
-                Icons.account_circle,
-                size: 25,
-                color: cargoGreen,
-              ),
-              title: Text('Profile'),
+            BarItem(
+              icon: Icons.account_circle,
+              title: 'Profile',
             ),
           ],
         ));
