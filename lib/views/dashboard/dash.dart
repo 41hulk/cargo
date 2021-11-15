@@ -1,7 +1,8 @@
-import 'package:cargo/dashboard/cargotrack.dart';
-import 'package:cargo/dashboard/order.dart';
-import 'package:cargo/profile/profileScreen.dart';
 import 'package:cargo/utils/colors.dart';
+import 'package:cargo/views/dashboard/cargotrack.dart';
+import 'package:cargo/views/dashboard/order.dart';
+import 'package:cargo/views/dashboard/update.dart';
+import 'package:cargo/views/profile/profileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +20,7 @@ class _DashScreenState extends State<DashboardScreen> {
   List<Widget> pages = [
     OrderScreen(),
     TrackScreen(),
-    Center(child: Text("2")),
+    UpdateScreen(),
     UserProfileScreen()
   ];
   void _onItemTapped(int index) {
@@ -38,28 +39,6 @@ class _DashScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: cargoBlue,
-          elevation: 0.0,
-          centerTitle: true,
-          title: Text(
-            'Capstone Logistics',
-            style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-          ),
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(Icons.account_circle, color: Colors.white),
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         CupertinoPageRoute(
-          //           builder: (context) => UserProfileScreen(),
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ],
-        ),
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: _myPage,

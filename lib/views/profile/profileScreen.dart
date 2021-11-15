@@ -1,9 +1,11 @@
 import 'package:cargo/utils/colors.dart';
+import 'package:cargo/views/auth/loginScreen.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:avatars/avatars.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -13,64 +15,48 @@ class UserProfileScreen extends StatefulWidget {
 class _UserProfilecreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        centerTitle: true,
+        title: Text(
+          'Profile',
+          style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Avatar(
-                  name: 'Ntare Guy',
+              Container(
+                child: Avatar(
+                  name: 'Demo',
                   placeholderColors: [cargoLightBlue],
-                  backgroundColor: cargoLightBlue,
+                  backgroundColor: Colors.black,
                   textStyle:
-                      GoogleFonts.poppins(color: Colors.white, fontSize: 32)),
-              _infocard('Name:', 'Ntare Guy'),
-              _infocard('USERID:', 'G342'),
-              _infocard('Phone:', '07808812313'),
-              _infocard('Email:', 'demo@mikumifreight.com'),
-              SizedBox(height: 30),
-              _logout()
+                      GoogleFonts.poppins(color: Colors.black, fontSize: 32),
+                ),
+              ),
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _infocard('Name:', 'Ntare Guy'),
+                    _infocard('User ID:', '424'),
+                    _infocard('Phone:', '07802341234'),
+                    _infocard('Email', 'demo@mikumifreight.com'),
+                    SizedBox(height: 30),
+                    _logout()
+                  ],
+                ),
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget userAvatar() {
-    return SizedBox(
-      height: 115,
-      width: 115,
-      child: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/ewawelogo.png"),
-          ),
-          Positioned(
-            right: -16,
-            bottom: 0,
-            child: SizedBox(
-              height: 46,
-              width: 46,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.white,
-                  backgroundColor: Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: Icon(Icons.photo_camera, color: Colors.black),
-              ),
-            ),
-          )
-        ],
       ),
     );
   }
@@ -84,33 +70,24 @@ class _UserProfilecreenState extends State<UserProfileScreen> {
           border: Border.all(
             color: Colors.white24,
           ),
-          color: cargoDarkBlue),
-      child: Row(
+          color: Colors.white),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                label,
-                style: GoogleFonts.poppins(
-                    fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ],
+          Text(
+            label,
+            style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: cargoDarkBlue),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                info,
-                style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white),
-              ),
-            ],
+          Text(
+            info,
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ],
       ),
@@ -125,7 +102,13 @@ class _UserProfilecreenState extends State<UserProfileScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         backgroundColor: Colors.green[200],
       ),
-      onPressed: () {},
+      onPressed: () async {
+        SharedPreferences storage = await SharedPreferences.getInstance();
+        storage.remove('authtoken');
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
+            (Route<dynamic> route) => false);
+      },
       child: Row(
         children: [
           SizedBox(width: 20),

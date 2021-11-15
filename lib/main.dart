@@ -1,5 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cargo/auth/loginScreen.dart';
+import 'package:cargo/views/auth/loginScreen.dart';
 
 import 'package:flutter/material.dart';
 

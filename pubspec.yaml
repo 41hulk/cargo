@@ -40,6 +40,7 @@ dependencies:
   http: ^0.13.4
   top_snackbar_flutter: ^1.0.1
   logger: ^1.1.0
+  dropdown_search: ^2.0.0
 
 dev_dependencies:
   flutter_test:
